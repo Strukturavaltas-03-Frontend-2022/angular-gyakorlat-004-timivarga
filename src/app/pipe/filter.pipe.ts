@@ -12,8 +12,8 @@ export class FilterPipe implements PipeTransform {
    * @returns {any[]} - a kifejezés alapján szűrt tömb
    */
   transform(value: any[], phrase: string, key: string = ''): any {
-    // A KÖVETKEZŐ SORT TÁVOLÍTSD EL!!!
-    return value;
+    // // A KÖVETKEZŐ SORT TÁVOLÍTSD EL!!!
+    // return value;
 
     /**
      * FELADAT!
@@ -21,7 +21,9 @@ export class FilterPipe implements PipeTransform {
      * térj vissza a value változóval.
      */
 
-
+    if (!Array.isArray(value) || !phrase || !key) {
+      return value;
+    }
 
     /**
      * FELADAT!
@@ -30,8 +32,7 @@ export class FilterPipe implements PipeTransform {
      * 2. A visszatérési érték true, ha valahol szerepel benne a phrase.
      * TIPP: az összehasonlítás előtt a két értéket alakítsd kisbetűsre.
      */
-
-
+    return value.filter(item => String(item[key]).toLocaleLowerCase().includes(phrase))
   }
 
 }
